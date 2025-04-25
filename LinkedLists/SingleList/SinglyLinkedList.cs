@@ -1,6 +1,6 @@
 ﻿namespace SingleList;
 
-public class SinglyLinkedList<T>
+public class SinglyLinkedList<T> where T : IComparable<T>
 {
     private SingleNode<T>? head;
 
@@ -105,5 +105,32 @@ public class SinglyLinkedList<T>
             current = next;
         }
         head = prev;
+    }
+
+    public void Orden(bool ascendente = true)
+    {
+        if (head == null || head.Next == null)
+            return;
+
+        bool swapped;
+        do
+        {
+            swapped = false;
+            var current = head;
+            while (current.Next != null)
+            {
+                int comparacion = current.Data.CompareTo(current.Next.Data);
+                bool debeIntercambiar = ascendente ? comparacion > 0 : comparacion < 0;
+
+                if (debeIntercambiar)
+                {
+                    T temp = current.Data; // value actual node
+                    current.Data = current.Next.Data;  // value next node
+                    current.Next.Data = temp;  // change node values 
+                    swapped = true;  // see new change
+                }
+                current = current.Next;  // advance to the next node
+            }
+        } while (swapped);
     }
 }

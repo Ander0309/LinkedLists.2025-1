@@ -65,6 +65,16 @@ do
             singleList.Reverse();
             Console.WriteLine("List reversed.");
             break;
+
+        case "8":
+            singleList.Orden(true);
+            Console.WriteLine("Lista ordenada de forma ascendente.");
+            break;
+
+        case "9":
+            singleList.Orden(false);
+            Console.WriteLine("Lista ordenada de forma descendente.");
+            break;
     }
 } while (opc != "0");
 
@@ -77,6 +87,8 @@ string Menu()
     Console.WriteLine("5. Clear all list");
     Console.WriteLine("6. Remove item");
     Console.WriteLine("7. Reverse");
+    Console.WriteLine("8. Order ascending");
+    Console.WriteLine("9. Order descending");
     Console.WriteLine("0. Exit");
     Console.Write("Choose an option: ");
     return Console.ReadLine() ?? "0";
